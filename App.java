@@ -9,11 +9,15 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.CheckBox;
+import javafx.scene.Node;
+
 
 /**
  * Template JavaFX application.
  */
 public class App extends Application {
+    CheckBox light = new CheckBox();
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -25,7 +29,9 @@ public class App extends Application {
         contentBox.setAlignment(Pos.CENTER);
 
         Label promptLabel = new Label();
-        promptLabel.setText("Enter your thoughts");
+        promptLabel.setText("Welcome to lights out!");
+
+        Node lightbox = createlightboxes();
 
         TextField thoughtsBox = new TextField();
         thoughtsBox.setMaxWidth(150);
@@ -51,6 +57,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.setTitle("Amazing App 2000");
         stage.show();
+
     }
 
     /**
@@ -63,5 +70,7 @@ public class App extends Application {
         inputBox.clear();
         System.out.println("Interesting thought: " + text);
         outputBox.appendText("Interesting thought: " + text + "\n");
+    } Node createlightboxes(){
+
     }
 }
