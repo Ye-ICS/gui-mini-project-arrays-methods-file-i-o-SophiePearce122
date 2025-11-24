@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.control.CheckBox;
 
 /**
  * Template JavaFX application.
