@@ -32,7 +32,8 @@ public class App extends Application {
         // Create components to add.
         VBox contentBox = new VBox();
         contentBox.setAlignment(Pos.CENTER);
-
+        lightbox.setAlignment(Pos.CENTER);
+        
         Label promptLabel = new Label();
         promptLabel.setText("Welcome to lights out!");
         createlightboxes();
@@ -48,9 +49,8 @@ public class App extends Application {
         // Set up reactions (aka callbacks).
 
         // Add components to the content box.
-        contentBox.getChildren().add(promptLabel);
-        contentBox.getChildren().add(lightbox);
-        contentBox.getChildren().add(newPuzzle);
+        contentBox.getChildren().addAll(promptLabel, lightbox, newPuzzle);
+        
         // Set up the window and display it.
         Scene scene = new Scene(contentBox, 300, 200);
         stage.setScene(scene);
@@ -65,6 +65,7 @@ public class App extends Application {
     void createlightboxes() {
         for (int i =0; i < 5; i++){
             rowlight = new HBox();
+            rowlight.setAlignment(Pos.CENTER);
             for (int j=0; j < 5; j++){
                 randomGenerator();
                 light = new CheckBox();
