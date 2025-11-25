@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.CheckBox;
 import javafx.scene.Node;
+import java.util.Random;
 
 
 /**
@@ -20,6 +21,7 @@ public class App extends Application {
     CheckBox light = new CheckBox();
     HBox rowlight;
     VBox lightbox = new VBox();
+    int randomInt;
     
     public static void main(String[] args) {
         launch(args);
@@ -59,13 +61,24 @@ public class App extends Application {
         for (int i =0; i < 5; i++){
             rowlight = new HBox();
             for (int j=0; j < 5; j++){
+                randomGenerator();
                 light = new CheckBox();
+                if (randomInt == 1){
+                    light.setSelected(true);
+                }
                 rowlight.getChildren().add(light);
+                
             }
            lightbox.getChildren().add(rowlight);
             
         } 
 
+    }
+
+    void randomGenerator(){
+        int maxnum = 2;
+        Random random = new Random();
+        randomInt = random.nextInt(maxnum);
     }
 
     /**
