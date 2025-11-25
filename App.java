@@ -42,20 +42,25 @@ public class App extends Application {
         TextArea messageBox = new TextArea();
         messageBox.setEditable(false);
 
-        Button submissionBtn = new Button();
-        submissionBtn.setText("Submit");
+        Button newPuzzle = new Button();
+        newPuzzle.setText("New puzzle");
 
         // Set up reactions (aka callbacks).
 
         // Add components to the content box.
         contentBox.getChildren().add(promptLabel);
         contentBox.getChildren().add(lightbox);
+        contentBox.getChildren().add(newPuzzle);
         // Set up the window and display it.
         Scene scene = new Scene(contentBox, 300, 200);
         stage.setScene(scene);
         stage.setTitle("Amazing App 2000");
         stage.show();
-
+        newPuzzle.setOnAction(event -> {
+            lightbox.getChildren().clear();
+            createlightboxes();
+            
+        } );
     } 
     void createlightboxes() {
         for (int i =0; i < 5; i++){
