@@ -44,12 +44,16 @@ public class App extends Application {
         messageBox.setEditable(false);
 
         Button newPuzzle = new Button();
-        newPuzzle.setText("New puzzle");
+        newPuzzle.setText("New puzzle on easy");
+
+        Button newMediumPuzzle = new Button();
+        newMediumPuzzle.setText("Click me to start new medium puzzle.");
+
 
         // Set up reactions (aka callbacks).
 
         // Add components to the content box.
-        contentBox.getChildren().addAll(promptLabel, lightbox, newPuzzle);
+        contentBox.getChildren().addAll(promptLabel, lightbox, newPuzzle, newMediumPuzzle);
         
         // Set up the window and display it.
         Scene scene = new Scene(contentBox, 300, 200);
