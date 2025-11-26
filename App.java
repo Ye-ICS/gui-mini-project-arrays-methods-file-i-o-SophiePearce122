@@ -65,6 +65,13 @@ public class App extends Application {
             createlightboxes();
             
         } );
+        newMediumPuzzle.setOnAction(event -> {
+            lightbox.getChildren().clear();
+            createMediumLightBoxes();
+
+        }
+
+        );
     } 
     void createlightboxes() {
         for (int i =0; i < 5; i++){
@@ -82,6 +89,22 @@ public class App extends Application {
            lightbox.getChildren().add(rowlight);
             
         } 
+
+    } void createMediumLightBoxes(){
+        for (int i =0; i < 10; i++){
+            rowlight = new HBox();
+            rowlight.setAlignment(Pos.CENTER);
+            for (int j =0; j < 10; j++){
+                randomGenerator();
+                light = new CheckBox();
+                if (randomInt ==1){
+                    light.setSelected(true);
+                }
+                rowlight.getChildren().add(light);
+
+            }
+            lightbox.getChildren().add(rowlight);
+        }
 
     }
 
