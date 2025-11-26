@@ -9,9 +9,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.CheckBox;// checkbox for the lights. 
 import javafx.scene.Node;
-import java.util.Random;
+import java.util.Random; // Random Generator.
 
 
 /**
@@ -22,6 +22,7 @@ public class App extends Application {
     HBox rowlight;
     VBox lightbox = new VBox();
     int randomInt;
+    HBox diffculty = new HBox();
     
     public static void main(String[] args) {
         launch(args);
@@ -32,6 +33,7 @@ public class App extends Application {
         // Create components to add.
         VBox contentBox = new VBox();
         contentBox.setAlignment(Pos.CENTER);
+        diffculty.setAlignment(Pos.CENTER);
         lightbox.setAlignment(Pos.CENTER);
         
         Label promptLabel = new Label();
@@ -53,8 +55,8 @@ public class App extends Application {
         // Set up reactions (aka callbacks).
 
         // Add components to the content box.
-        contentBox.getChildren().addAll(promptLabel, lightbox, newPuzzle, newMediumPuzzle);
-        
+        contentBox.getChildren().addAll(promptLabel, lightbox, diffculty);
+        diffculty.getChildren().addAll(newPuzzle, newMediumPuzzle);
         // Set up the window and display it.
         Scene scene = new Scene(contentBox, 300, 200);
         stage.setScene(scene);
