@@ -51,12 +51,15 @@ public class App extends Application {
         Button newMediumPuzzle = new Button();
         newMediumPuzzle.setText("Click me to start new medium puzzle.");
 
+        Button newHardPuzzle = new Button();
+        newHardPuzzle.setText("Click me to start a new hard puzzle.");
+
 
         // Set up reactions (aka callbacks).
 
         // Add components to the content box.
         contentBox.getChildren().addAll(promptLabel, lightbox, diffculty);
-        diffculty.getChildren().addAll(newPuzzle, newMediumPuzzle);
+        diffculty.getChildren().addAll(newPuzzle, newMediumPuzzle, newHardPuzzle);
         // Set up the window and display it.
         Scene scene = new Scene(contentBox, 300, 200);
         stage.setScene(scene);
