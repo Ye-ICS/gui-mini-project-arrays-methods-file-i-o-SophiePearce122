@@ -17,8 +17,8 @@ import java.util.Random; // Random Generator.
  * Template JavaFX application.
  */
 public class App extends Application {
-    CheckBox light = new CheckBox();
-    HBox rowlight;
+    CheckBox[] light = {new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), };
+    HBox[] rowlight = {new HBox(), new HBox(), new HBox(), new HBox(), new HBox()};
     VBox lightbox = new VBox();
     int randomInt;
     HBox diffculty = new HBox();
@@ -82,54 +82,79 @@ public class App extends Application {
             createHardLightBoxes();
             
         });
+        for ( int i =0; i < 25; i++){
+
+            int lightNum = i;
+            light[i].setOnAction(event -> {
+                lightClicked(lightNum);
+        });
+        }
+        
+        
+
     } 
+
+    void lightClicked(int i){
+        int pickLight = i;
+        boolean lightSetting; //= light[pickLight].isSelected();
+        // light[pickLight].setSelected(!lightSetting);
+        lightSetting = light[pickLight+1].isSelected();
+        light[pickLight+1].setSelected(!lightSetting);
+        lightSetting = light[pickLight-1].isSelected();
+        light[pickLight-1].setSelected(!lightSetting);
+        lightSetting = light[pickLight + 5].isSelected();
+        light[pickLight+5].setSelected(!lightSetting);
+        lightSetting = light[pickLight-5].isSelected();
+        light[pickLight-5].setSelected(!lightSetting);
+
+
+    }
+
     void createlightboxes() {
         for (int i =0; i < 5; i++){
-            rowlight = new HBox();
-            rowlight.setAlignment(Pos.CENTER);
+            rowlight[i] = new HBox();
+            rowlight[i].setAlignment(Pos.CENTER);
             for (int j=0; j < 5; j++){
                 randomGenerator();
-                light = new CheckBox();
                 if (randomInt == 1){
-                    light.setSelected(true);
+                    light[i*5 + j].setSelected(true);
                 }
-                rowlight.getChildren().add(light);
-                
+                rowlight[i].getChildren().add(light[i*5 + j]);
             }
-           lightbox.getChildren().add(rowlight);
+           lightbox.getChildren().add(rowlight[i]);
             
         } 
 
     } void createMediumLightBoxes(){
         for (int i =0; i < 10; i++){
-            rowlight = new HBox();
-            rowlight.setAlignment(Pos.CENTER);
+            rowlight[i] = new HBox();
+            rowlight[i].setAlignment(Pos.CENTER);
             for (int j =0; j < 10; j++){
                 randomGenerator();
-                light = new CheckBox();
+                light[j]= new CheckBox();
                 if (randomInt ==1){
-                    light.setSelected(true);
+                    light[j].setSelected(true);
                 }
-                rowlight.getChildren().add(light);
+                rowlight[i].getChildren().add(light[j]);
 
             }
-            lightbox.getChildren().add(rowlight);
+            lightbox.getChildren().add(rowlight[i]);
         }
 
     } void createHardLightBoxes(){
         for (int i =0; i< 15; i++){
-            rowlight = new HBox();
-            rowlight.setAlignment(Pos.CENTER);
+            rowlight[i] = new HBox();
+            rowlight[i].setAlignment(Pos.CENTER);
             for (int j =0; j < 15; j++){
                 randomGenerator();
-                light = new CheckBox();
+                light[j] = new CheckBox();
                 if (randomInt == 1){
-                    light.setSelected(true);
+                    light[j].setSelected(true);
 
-                } rowlight.getChildren().add(light);
+                } rowlight[i].getChildren().add(light[j]);
 
             }
-            lightbox.getChildren().add(rowlight);
+            lightbox.getChildren().add(rowlight[i]);
         }
 
 
