@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.CheckBox;// checkbox for the lights. 
 import javafx.scene.Node;
 import java.util.Random; // Random Generator.
-
+import javafx.animation.Timeline;
 
 /**
  * Template JavaFX application.
@@ -22,7 +22,8 @@ public class App extends Application {
     VBox lightbox = new VBox();
     int randomInt;
     HBox diffculty = new HBox();
-    
+    Label timer = new Label("timer");
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -53,11 +54,11 @@ public class App extends Application {
         Button newHardPuzzle = new Button();
         newHardPuzzle.setText("Click me to start a new hard puzzle.");
 
-
+        
         // Set up reactions (aka callbacks).
 
         // Add components to the content box.
-        contentBox.getChildren().addAll(promptLabel, lightbox, diffculty);
+        contentBox.getChildren().addAll(promptLabel, lightbox, diffculty, timer);
         diffculty.getChildren().addAll(newPuzzle, newMediumPuzzle, newHardPuzzle);
         // Set up the window and display it.
         Scene scene = new Scene(contentBox, 300, 200);
