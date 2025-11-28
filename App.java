@@ -12,18 +12,19 @@ import javafx.scene.control.CheckBox;// checkbox for the lights.
 import javafx.scene.Node;
 import java.util.Random; // Random Generator.
 import javafx.animation.Timeline;
+import javafx.util.Duration;
+import java.util.Timer;
 
-/**
- * Template JavaFX application.
- */
 public class App extends Application {
     CheckBox[] light = {new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), };
     HBox[] rowlight = {new HBox(), new HBox(), new HBox(), new HBox(), new HBox()};
     VBox lightbox = new VBox();
     int randomInt;
     HBox diffculty = new HBox();
-    Label timer = new Label("timer");
-
+    int time = 99;
+    Timer Timer = new Timer();
+    Label timer = new Label("Seconds left:" + Timer);
+    
     public static void main(String[] args) {
         launch(args);
     }
@@ -35,11 +36,10 @@ public class App extends Application {
         contentBox.setAlignment(Pos.CENTER);
         diffculty.setAlignment(Pos.CENTER);
         lightbox.setAlignment(Pos.CENTER);
-        
         Label promptLabel = new Label();
         promptLabel.setText("Welcome to lights out!");
         createlightboxes();
-
+        
       
         
         TextArea messageBox = new TextArea();
@@ -54,7 +54,7 @@ public class App extends Application {
         Button newHardPuzzle = new Button();
         newHardPuzzle.setText("Click me to start a new hard puzzle.");
 
-        
+       
         // Set up reactions (aka callbacks).
 
         // Add components to the content box.
@@ -160,7 +160,7 @@ public class App extends Application {
 
 
 
-    }
+    } 
 
     void randomGenerator(){
         int maxnum = 2;
