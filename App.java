@@ -22,7 +22,7 @@ public class App extends Application {
     int randomInt;
     HBox diffculty = new HBox();
     int time = 99;
-    Timer  Timer = new Timer();
+    Timer  Timer = new Timer(); // timer for seconds left.
     Label timer = new Label("Seconds left:" + Timer);
     boolean isSolved = false;
     public static void main(String[] args) {
@@ -38,7 +38,7 @@ public class App extends Application {
         lightbox.setAlignment(Pos.CENTER);
         Label promptLabel = new Label();
         promptLabel.setText("Welcome to lights out!");
-        createlightboxes();
+        createlightboxes(); // creates light boxes when launched.
       
         
         TextArea messageBox = new TextArea();
@@ -58,14 +58,14 @@ public class App extends Application {
 
         // Add components to the content box.
         contentBox.getChildren().addAll(promptLabel, lightbox, diffculty, timer);
-        diffculty.getChildren().addAll(newPuzzle, newMediumPuzzle, newHardPuzzle);
+        diffculty.getChildren().addAll(newPuzzle, newMediumPuzzle, newHardPuzzle); // adds the buttons for dificulty
         // Set up the window and display it.
         Scene scene = new Scene(contentBox, 300, 200);
         stage.setScene(scene);
         stage.setTitle("Lights out");
         stage.show();
-        newPuzzle.setOnAction(event -> {
-            lightbox.getChildren().clear();
+        newPuzzle.setOnAction(event -> { // creates a new puzzle.
+            lightbox.getChildren().clear(); // clears lightboxes before creating new lightboxes
             createlightboxes();
             
         } );
@@ -117,7 +117,7 @@ public class App extends Application {
 
     }
 
-    void createlightboxes() {
+    void createlightboxes() { // creates the light boxes.
         for (int i =0; i < 5; i++){
             rowlight[i] = new HBox();
             rowlight[i].setAlignment(Pos.CENTER);
@@ -168,7 +168,7 @@ public class App extends Application {
 
     }  private void startCountdown(){
         Timer = new Timer();
-        
+
 
     }
 
