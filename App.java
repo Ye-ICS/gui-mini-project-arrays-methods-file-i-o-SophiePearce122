@@ -92,7 +92,7 @@ public class App extends Application {
         // 
         } 
         // if (!lightbox.equals(true)){
-        // // promptLabel.setText ("You win!");
+        // // promptLabel.setText ("You win!"); // boolean for winning. 
             
         // // }
 
