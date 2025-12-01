@@ -170,7 +170,6 @@ public class App extends Application {
 
     /**
      * Handle the submission of a thought.
-     * @param inputBox  The TextField where the user types their thought.
      * @param outputBox The TextArea where the submitted thoughts are displayed.
      */
     
