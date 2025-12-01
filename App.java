@@ -24,7 +24,7 @@ public class App extends Application {
     int time = 99;
     Timer Timer = new Timer();
     Label timer = new Label("Seconds left:" + Timer);
-    
+    boolean isSolved = false;
     public static void main(String[] args) {
         launch(args);
     }
@@ -39,7 +39,6 @@ public class App extends Application {
         Label promptLabel = new Label();
         promptLabel.setText("Welcome to lights out!");
         createlightboxes();
-        
       
         
         TextArea messageBox = new TextArea();
@@ -53,7 +52,6 @@ public class App extends Application {
 
         Button newHardPuzzle = new Button();
         newHardPuzzle.setText("Click me to start a new hard puzzle.");
-
        
         // Set up reactions (aka callbacks).
 
@@ -63,7 +61,7 @@ public class App extends Application {
         // Set up the window and display it.
         Scene scene = new Scene(contentBox, 300, 200);
         stage.setScene(scene);
-        stage.setTitle("Amazing App 2000");
+        stage.setTitle("Lights out");
         stage.show();
         newPuzzle.setOnAction(event -> {
             lightbox.getChildren().clear();
@@ -89,7 +87,14 @@ public class App extends Application {
             light[i].setOnAction(event -> {
                 lightClicked(lightNum);
         });
-        }
+        
+        // 
+        } 
+        // if (!lightbox.equals(true)){
+        // // promptLabel.setText ("You win!");
+            
+        // // }
+
         
         
 
@@ -166,8 +171,7 @@ public class App extends Application {
         int maxnum = 2;
         Random random = new Random();
         randomInt = random.nextInt(maxnum);
-    }
-
+    } 
     /**
      * Handle the submission of a thought.
      * @param outputBox The TextArea where the submitted thoughts are displayed.
