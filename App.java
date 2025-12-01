@@ -22,7 +22,7 @@ public class App extends Application {
     int randomInt;
     HBox diffculty = new HBox();
     int time = 99;
-    Timer Timer = new Timer();
+    Timer  Timer = new Timer();
     Label timer = new Label("Seconds left:" + Timer);
     boolean isSolved = false;
     public static void main(String[] args) {
@@ -53,6 +53,7 @@ public class App extends Application {
         Button newHardPuzzle = new Button();
         newHardPuzzle.setText("Click me to start a new hard puzzle.");
        
+        startCountdown();
         // Set up reactions (aka callbacks).
 
         // Add components to the content box.
@@ -165,7 +166,11 @@ public class App extends Application {
 
 
 
-    } 
+    }  private void startCountdown(){
+        Timer = new Timer();
+        
+
+    }
 
     void randomGenerator(){
         int maxnum = 2;
