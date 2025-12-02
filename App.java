@@ -68,11 +68,12 @@ public class App extends Application {
         newPuzzle.setOnAction(event -> { // creates a new puzzle.
             lightbox.getChildren().clear(); // clears lightboxes before creating new lightboxes
             createlightboxes();
-            
+            rowLength =5;
         } );
         newMediumPuzzle.setOnAction(event -> {
             lightbox.getChildren().clear();
             createMediumLightBoxes();
+            rowLength = 10;
 
         } 
 
@@ -81,7 +82,7 @@ public class App extends Application {
         newHardPuzzle.setOnAction(event -> {
             lightbox.getChildren().clear();
             createHardLightBoxes();
-            
+            rowLength = 15;
         });
         
         for ( int i =0; i < 25; i++){
