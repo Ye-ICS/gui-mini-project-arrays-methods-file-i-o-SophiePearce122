@@ -16,7 +16,7 @@ import javafx.util.Duration;
 import java.util.Timer;
 
 public class App extends Application {
-    CheckBox[] light = {new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), };
+    CheckBox[] light = {new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox() };
     HBox[] rowlight = {new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox()};
     VBox lightbox = new VBox();
     int randomInt;
@@ -25,6 +25,7 @@ public class App extends Application {
     Timer  Timer = new Timer(); // timer for seconds left.
     Label timer = new Label("Seconds left:" + Timer);
     boolean isSolved = false;
+    int rowLength = 5;
     public static void main(String[] args) {
         launch(args);
     }
@@ -82,19 +83,21 @@ public class App extends Application {
             createHardLightBoxes();
             
         });
+        
         for ( int i =0; i < 25; i++){
 
             int lightNum = i;
             light[i].setOnAction(event -> {
                 lightClicked(lightNum);
-        });
-            }
-        // for (int i = 0; i < 100; i++){
-        //     int lightnum = i;
-        //     light [i].setOnAction(event ->{
-        //         lightClicked(lightnum);
-        //     });
-        // }
+            });
+        }
+
+        for (int i = 0; i < 100; i++){
+            int lightnum = i;
+            light [i].setOnAction(event ->{
+                lightClicked(lightnum);
+            });
+        }
         
     
         
@@ -108,25 +111,44 @@ public class App extends Application {
 
     } 
 
+    boolean lastColumn(int i) {
+        for (int j =1; j <= rowLength; j++){
+            if (i == j*rowLength -1){
+                return true;
+            }
+
+        }
+        return false;
+    }
+    boolean firstColumn(int i){
+        for (int j = 0; j < rowLength; j++){
+            if ( i == j*rowLength ){
+                return true;
+            }
+        }
+        return false;
+        
+    }
+
     void lightClicked(int i){
         int pickLight = i;
         boolean lightSetting; //= light[pickLight].isSelected();
         // light[pickLight].setSelected(!lightSetting);
-        lightSetting = light[pickLight + 5].isSelected();
-        light[pickLight+5].setSelected(!lightSetting);
-        lightSetting = light[pickLight-5].isSelected();
-        light[pickLight-5].setSelected(!lightSetting);
-        if (!(pickLight == 4|| pickLight == 9 || pickLight == 14 || pickLight == 19 || pickLight == 24)){
+        if (!lastColumn(pickLight)){
             lightSetting = light[pickLight+1].isSelected();
             light[pickLight+1].setSelected(!lightSetting);
             
         } 
-        if (!(pickLight == 5|| pickLight == 10 || pickLight == 15 || pickLight == 20)){
+        if (!firstColumn(pickLight)){
             
             lightSetting = light[pickLight-1].isSelected();
             light[pickLight-1].setSelected(!lightSetting);
         }
-
+        
+        lightSetting = light[pickLight + rowLength].isSelected();
+        light[pickLight+rowLength].setSelected(!lightSetting);
+        lightSetting = light[pickLight-rowLength].isSelected();
+        light[pickLight-rowLength].setSelected(!lightSetting);
     }
 
     void createlightboxes() { // creates the light boxes.
@@ -152,9 +174,9 @@ public class App extends Application {
                 randomGenerator();
                 light[j]= new CheckBox();
                 if (randomInt ==1){
-                    light[j].setSelected(true);
+                    light[i*10 + j].setSelected(true);
                 }
-                rowlight[i].getChildren().add(light[j]);
+                rowlight[i].getChildren().add(light[i * 10 + j]);
 
             }
             lightbox.getChildren().add(rowlight[i]);
