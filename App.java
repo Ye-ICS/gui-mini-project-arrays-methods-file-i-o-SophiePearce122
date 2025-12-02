@@ -17,7 +17,7 @@ import java.util.Timer;
 
 public class App extends Application {
     CheckBox[] light = {new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), };
-    HBox[] rowlight = {new HBox(), new HBox(), new HBox(), new HBox(), new HBox()};
+    HBox[] rowlight = {new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox()};
     VBox lightbox = new VBox();
     int randomInt;
     HBox diffculty = new HBox();
@@ -88,9 +88,16 @@ public class App extends Application {
             light[i].setOnAction(event -> {
                 lightClicked(lightNum);
         });
+            }
+        // for (int i = 0; i < 100; i++){
+        //     int lightnum = i;
+        //     light [i].setOnAction(event ->{
+        //         lightClicked(lightnum);
+        //     });
+        // }
         
-        // 
-        } 
+    
+        
         // if (!lightbox.equals(true)){
         // // promptLabel.setText ("You win!"); // boolean for winning. 
             
@@ -105,15 +112,20 @@ public class App extends Application {
         int pickLight = i;
         boolean lightSetting; //= light[pickLight].isSelected();
         // light[pickLight].setSelected(!lightSetting);
-        lightSetting = light[pickLight+1].isSelected();
-        light[pickLight+1].setSelected(!lightSetting);
-        lightSetting = light[pickLight-1].isSelected();
-        light[pickLight-1].setSelected(!lightSetting);
         lightSetting = light[pickLight + 5].isSelected();
         light[pickLight+5].setSelected(!lightSetting);
         lightSetting = light[pickLight-5].isSelected();
         light[pickLight-5].setSelected(!lightSetting);
-
+        if (!(pickLight == 4|| pickLight == 9 || pickLight == 14 || pickLight == 19 || pickLight == 24)){
+            lightSetting = light[pickLight+1].isSelected();
+            light[pickLight+1].setSelected(!lightSetting);
+            
+        } 
+        if (!(pickLight == 5|| pickLight == 10 || pickLight == 15 || pickLight == 20)){
+            
+            lightSetting = light[pickLight-1].isSelected();
+            light[pickLight-1].setSelected(!lightSetting);
+        }
 
     }
 
