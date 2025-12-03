@@ -70,7 +70,7 @@ public class App extends Application {
         newPuzzle.setOnAction(event -> { // creates a new puzzle.
             lightbox.getChildren().clear(); // clears lightboxes before creating new lightboxes
             createlightboxes();
-            rowLength =5;
+            rowLength = 5;
         } );
         newMediumPuzzle.setOnAction(event -> {
             lightbox.getChildren().clear();
@@ -101,12 +101,12 @@ public class App extends Application {
                 lightClicked(lightNum);
             });
         }
-        for (int i =0; i < 225; i++){
-            int lightNum = i;
-            light [i].setOnAction(event ->{
-                lightClicked(lightNum);
-            });        
-        }
+        // for (int i =0; i < 225; i++){
+        //     int lightNum = i;
+        //     light [i].setOnAction(event ->{
+        //         lightClicked(lightNum);
+        //     });        
+        // }
 
 
         
