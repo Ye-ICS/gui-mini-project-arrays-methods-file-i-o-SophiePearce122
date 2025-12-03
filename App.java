@@ -55,8 +55,11 @@ public class App extends Application {
         newHardPuzzle.setText("Click me to start a new hard puzzle.");
        
         startCountdown();
+        boolean win = false;
         // Set up reactions (aka callbacks).
-
+        if (win == true){
+            promptLabel.setText("You win!");
+        }
         // Add components to the content box.
         contentBox.getChildren().addAll(promptLabel, lightbox, diffculty, timer);
         diffculty.getChildren().addAll(newPuzzle, newMediumPuzzle, newHardPuzzle); // adds the buttons for dificulty
@@ -99,13 +102,12 @@ public class App extends Application {
                 lightClicked(lightnum);
             });
         }
+
+        
         
     
         
-        // if (!lightbox.equals(true)){
-        // // promptLabel.setText ("You win!"); // boolean for winning. 
-            
-        // // }
+
 
         
         
@@ -212,6 +214,8 @@ public class App extends Application {
         Random random = new Random();
         randomInt = random.nextInt(maxnum);
     } 
+
+    
     /**
      * Handle the submission of a thought.
      * @param outputBox The TextArea where the submitted thoughts are displayed.
