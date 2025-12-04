@@ -10,8 +10,6 @@ import javafx.stage.Stage;
 import javafx.scene.control.CheckBox;// checkbox for the lights. 
 import javafx.scene.Node; // node. Just in case.
 import java.util.Random; // Random Generator.
-import javafx.animation.Timeline;
-import javafx.util.Duration;
 import java.util.Timer;
 
 public class App extends Application {
