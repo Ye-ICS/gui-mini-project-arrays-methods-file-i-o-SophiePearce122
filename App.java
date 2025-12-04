@@ -36,7 +36,7 @@ public class App extends Application {
         Label promptLabel = new Label(); // welcome/win text
         promptLabel.setText("Welcome to lights out!"); // sets the promptlabel text when you start.
         createlightboxes(); // creates light boxes when launched.
-      
+        
         
         TextArea messageBox = new TextArea(); // useless
         messageBox.setEditable(false);
