@@ -17,14 +17,13 @@ import java.util.Timer;
 public class App extends Application {
     CheckBox[] light = {new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox() };
     HBox[] rowlight = {new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox(), new HBox()};
-    VBox lightbox = new VBox();
-    int randomInt;
-    HBox diffculty = new HBox();
-    int time = 99;
+    VBox lightbox = new VBox();// vbox for the light boxes.
+    int randomInt; // random number to change checkbox status.
+    HBox diffculty = new HBox();// hbox for the diffculties buttons.
+    int time = 99; // the time for the timer.
     Timer  Timer = new Timer(); // timer for seconds left.
-    Label timer = new Label("Seconds left:" + Timer);
-    boolean isSolved = false;
-    int rowLength = 5;
+    Label timer = new Label("Seconds left:" + Timer); // timer (does not work)
+    int rowLength = 5; // length for creating lightboxes.
     public static void main(String[] args) {
         launch(args);
     }
@@ -34,10 +33,10 @@ public class App extends Application {
         // Create components to add.
         VBox contentBox = new VBox();
         contentBox.setAlignment(Pos.CENTER);
-        diffculty.setAlignment(Pos.CENTER);
+        diffculty.setAlignment(Pos.CENTER); // adjust difculty hbox to center.
         lightbox.setAlignment(Pos.CENTER);
-        Label promptLabel = new Label();
-        promptLabel.setText("Welcome to lights out!");
+        Label promptLabel = new Label(); // welcome/win text
+        promptLabel.setText("Welcome to lights out!"); // sets the promptlabel text when you start.
         createlightboxes(); // creates light boxes when launched.
       
         
@@ -47,7 +46,7 @@ public class App extends Application {
         Button newPuzzle = new Button();
         newPuzzle.setText("New puzzle on easy");
 
-        Button newMediumPuzzle = new Button();
+        Button newMediumPuzzle = new Button(); // medium puzzle
         newMediumPuzzle.setText("Click me to start new medium puzzle.");
 
         Button newHardPuzzle = new Button();
@@ -57,8 +56,8 @@ public class App extends Application {
         boolean win = false;
         checkifwin(win);
         // Set up reactions (aka callbacks).
-        if (win == true){
-            promptLabel.setText("you win!");
+        if (win == true){ // if win equals true then..
+            promptLabel.setText("you win!"); // sets prompt text to you win!
         }
         // Add components to the content box.
         contentBox.getChildren().addAll(promptLabel, lightbox, diffculty, timer);
@@ -102,7 +101,7 @@ public class App extends Application {
                 lightClicked(lightNum);
             });
         }
-        // for (int i =0; i < 225; i++){ // slashed for now... Does not work on hard
+        // for (int i =0; i < 225; i++){ // slashed for now... Does not work on hard :(
         //     int lightNum = i;
         //     light [i].setOnAction(event ->{
         //         lightClicked(lightNum);
@@ -140,16 +139,16 @@ public class App extends Application {
         
     }
 
-    void lightClicked(int i){
+    void lightClicked(int i){ // when light clicked
         int pickLight = i;
         boolean lightSetting; //= light[pickLight].isSelected();
         // light[pickLight].setSelected(!lightSetting);
-        if (!lastColumn(pickLight)){
+        if (!lastColumn(pickLight)){ // if the column is the last  row
             lightSetting = light[pickLight+1].isSelected();
             light[pickLight+1].setSelected(!lightSetting);
             
         } 
-        if (!firstColumn(pickLight)){
+        if (!firstColumn(pickLight)){ // if the column is the first row.
             
             lightSetting = light[pickLight-1].isSelected();
             light[pickLight-1].setSelected(!lightSetting);
@@ -176,7 +175,7 @@ public class App extends Application {
             
         } 
 
-    } void createMediumLightBoxes(){
+    } void createMediumLightBoxes(){// creates lightboxes for medium diffculity.
         for (int i =0; i < 10; i++){
             rowlight[i] = new HBox();
             rowlight[i].setAlignment(Pos.CENTER);
@@ -221,15 +220,15 @@ public class App extends Application {
         Random random = new Random();
         randomInt = random.nextInt(maxnum);
     } 
-    boolean checkifwin(boolean win){
+    boolean checkifwin(boolean win){// boolean win checker
         for (CheckBox light: light){
-            if (!light.isSelected()){
+            if (!light.isSelected()){// checks if all lights are turned off
                  win = true;
-                 return true;
+                 return true; // returns win true
             } 
 
         } 
-        return false;
+        return false; // else, return false.
         
     }
     
