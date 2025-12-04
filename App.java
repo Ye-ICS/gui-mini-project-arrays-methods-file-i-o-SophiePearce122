@@ -55,9 +55,10 @@ public class App extends Application {
        
         startCountdown();
         boolean win = false;
+        checkifwin(win);
         // Set up reactions (aka callbacks).
         if (win == true){
-            promptLabel.setText("You win!");
+            promptLabel.setText("you win!");
         }
         // Add components to the content box.
         contentBox.getChildren().addAll(promptLabel, lightbox, diffculty, timer);
@@ -87,7 +88,7 @@ public class App extends Application {
             rowLength = 15;
         });
         
-        for ( int i =0; i < 25; i++){
+        for ( int i =0; i < 25; i++){ // 
 
             int lightNum = i;
             light[i].setOnAction(event -> {
@@ -101,7 +102,7 @@ public class App extends Application {
                 lightClicked(lightNum);
             });
         }
-        // for (int i =0; i < 225; i++){
+        // for (int i =0; i < 225; i++){ // slashed for now... Does not work on hard
         //     int lightNum = i;
         //     light [i].setOnAction(event ->{
         //         lightClicked(lightNum);
@@ -220,7 +221,17 @@ public class App extends Application {
         Random random = new Random();
         randomInt = random.nextInt(maxnum);
     } 
+    boolean checkifwin(boolean win){
+        for (CheckBox light: light){
+            if (light.isSelected()){
+                 win = true;
+                 return true;
+            } 
 
+        } 
+        return false;
+        
+    }
     
     /**
      * Handle the submission of a thought.
