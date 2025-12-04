@@ -223,7 +223,7 @@ public class App extends Application {
     } 
     boolean checkifwin(boolean win){
         for (CheckBox light: light){
-            if (light.isSelected()){
+            if (!light.isSelected()){
                  win = true;
                  return true;
             } 
