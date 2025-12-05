@@ -20,7 +20,7 @@ public class App extends Application {
     int randomInt; // random number to change checkbox status.
     HBox diffculty = new HBox();// hbox for the diffculties buttons.
     int time = 99; // the time for the timer.
-    Label timerLabel = new Label(); // timer (does not work)
+    Label timerLabel = new Label("time"); // timer (works?)
     int rowLength = 5; // length for creating lightboxes.
     long startTime;
     public static void main(String[] args) {
@@ -106,7 +106,7 @@ public class App extends Application {
                 lightClicked(lightNum);
             });
         }
-        // for (int i =0; i < 225; i++){ // slashed for now... Does not work on hard (┬┬﹏┬┬)
+        // for (int i =0; i < 225; i++){ // slashed . Does not work on hard (┬┬﹏┬┬)
         //     int lightNum = i;
         //     light [i].setOnAction(event ->{
         //         lightClicked(lightNum);
