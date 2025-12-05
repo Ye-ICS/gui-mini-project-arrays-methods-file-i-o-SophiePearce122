@@ -11,6 +11,7 @@ import javafx.scene.control.CheckBox;// checkbox for the lights.
 import javafx.scene.Node; // node. Just in case.
 import java.util.Random; // Random Generator.
 import java.util.Timer;
+import java.util.TimerTask;
 
 public class App extends Application {
     CheckBox[] light = {new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox(), new CheckBox() }; // creates a new checkbox 300 times. i know, its alot O_O
@@ -19,8 +20,7 @@ public class App extends Application {
     int randomInt; // random number to change checkbox status.
     HBox diffculty = new HBox();// hbox for the diffculties buttons.
     int time = 99; // the time for the timer.
-    Timer  Timer = new Timer(); // timer for seconds left.
-    Label timer = new Label("Seconds left:" + Timer); // timer (does not work)
+    Label timerLabel = new Label(); // timer (does not work)
     int rowLength = 5; // length for creating lightboxes.
     public static void main(String[] args) {
         launch(args);
@@ -29,6 +29,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         // Create components to add.
+        long startTime = System.currentTimeMillis();
         VBox contentBox = new VBox();
         contentBox.setAlignment(Pos.CENTER);
         diffculty.setAlignment(Pos.CENTER); // adjust difculty hbox to center.
@@ -50,15 +51,17 @@ public class App extends Application {
         Button newHardPuzzle = new Button();
         newHardPuzzle.setText("Click me to start a new hard puzzle.");
        
-        startCountdown(); // count down for timer. (does not work)
         boolean win = false;
         checkifwin(win); // method to check if user won
         // Set up reactions (aka callbacks).
         if (win == true){ // if win equals true then..
             promptLabel.setText("you win!"); // sets prompt text to you win!
+            long endtime = System.currentTimeMillis() - startTime;
+            timerLabel.setText("Time taken" + endtime);
         }
         // Add components to the content box.
-        contentBox.getChildren().addAll(promptLabel, lightbox, diffculty, timer);// adds all 
+        
+        contentBox.getChildren().addAll(promptLabel, lightbox, diffculty, timerLabel);// adds all 
         diffculty.getChildren().addAll(newPuzzle, newMediumPuzzle, newHardPuzzle); // adds the buttons for dificulity
         // Set up the window and display it.
         Scene scene = new Scene(contentBox, 300, 200);
@@ -207,11 +210,7 @@ public class App extends Application {
 
 
 
-    }  private void startCountdown(){
-        Timer = new Timer();
-
-
-    }
+    }  
 
     void randomGenerator(){
         int maxnum = 2;
@@ -228,7 +227,9 @@ public class App extends Application {
         } 
         return false; // else, return false.
         
-    }
+    } 
+  
+    
     
     /**
      * Handle the submission of a thought.
