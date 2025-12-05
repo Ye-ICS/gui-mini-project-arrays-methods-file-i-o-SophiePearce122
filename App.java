@@ -22,6 +22,7 @@ public class App extends Application {
     int time = 99; // the time for the timer.
     Label timerLabel = new Label(); // timer (does not work)
     int rowLength = 5; // length for creating lightboxes.
+    long startTime;
     public static void main(String[] args) {
         launch(args);
     }
@@ -29,7 +30,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         // Create components to add.
-        long startTime = System.currentTimeMillis();
+        startTime = System.currentTimeMillis();
         VBox contentBox = new VBox();
         contentBox.setAlignment(Pos.CENTER);
         diffculty.setAlignment(Pos.CENTER); // adjust difculty hbox to center.
@@ -43,21 +44,21 @@ public class App extends Application {
         messageBox.setEditable(false);
 
         Button newPuzzle = new Button();
-        newPuzzle.setText("New puzzle on easy");
+        newPuzzle.setText("New easy puzzle");
 
         Button newMediumPuzzle = new Button(); // medium puzzle
-        newMediumPuzzle.setText("Click me to start new medium puzzle.");
+        newMediumPuzzle.setText("New medium puzzle");
 
         Button newHardPuzzle = new Button();
-        newHardPuzzle.setText("Click me to start a new hard puzzle.");
+        newHardPuzzle.setText("New hard puzzle");
        
         boolean win = false;
         checkifwin(win); // method to check if user won
         // Set up reactions (aka callbacks).
         if (win == true){ // if win equals true then..
             promptLabel.setText("you win!"); // sets prompt text to you win!
-            long endtime = System.currentTimeMillis() - startTime;
-            timerLabel.setText("Time taken" + endtime);
+            long endtime = System.currentTimeMillis() - startTime; // subtracts the start time
+            timerLabel.setText("Time taken" + endtime); // shows how long you took to solve the puzzle.
         }
         // Add components to the content box.
         
@@ -69,20 +70,23 @@ public class App extends Application {
         stage.setTitle("Lights out"); // set title
         stage.show();
         newPuzzle.setOnAction(event -> { // creates a new puzzle.
+            startTime = System.currentTimeMillis();
+
             lightbox.getChildren().clear(); // clears lightboxes before creating new lightboxes
             createlightboxes();
             rowLength = 5;
-        } );
+        });
         newMediumPuzzle.setOnAction(event -> {
+            startTime = System.currentTimeMillis();
             lightbox.getChildren().clear();
             createMediumLightBoxes(); // method to create medium light boxes
             rowLength = 10; // length for puzzle
 
-        } 
-
-        );
+        });
 
         newHardPuzzle.setOnAction(event -> {
+            startTime = System.currentTimeMillis();
+
             lightbox.getChildren().clear();
             createHardLightBoxes();
             rowLength = 15; // length for hard diffcultity
